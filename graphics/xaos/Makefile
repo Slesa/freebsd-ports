@@ -1,6 +1,6 @@
 PORTNAME=	xaos
 DISTVERSIONPREFIX=	release-
-DISTVERSION=	4.2.1
+DISTVERSION=	4.3.2
 PORTREVISION=	1
 CATEGORIES=	graphics math
 
@@ -11,14 +11,13 @@ WWW=		https://xaos-project.github.io/
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		compiler:c++11-lang gl qmake qt:5
+USES=		compiler:c++11-lang gl qmake qt:6
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	xaos-project
 GH_PROJECT=	XaoS
 
 USE_GL=		gl
-USE_QT=		core gui opengl widgets buildtools:build linguisttools:build
 
 QMAKE_ARGS+=	INCLUDEPATH+=${LOCALBASE}/include \
 		LIBS+=-L${LOCALBASE}/lib
@@ -42,7 +41,7 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/src/ui/images/xaosbig.png \
 		${STAGEDIR}${PREFIX}/share/pixmaps/xaos.png
 	${INSTALL_MAN} ${WRKSRC}/doc/xaos.6 \
-		${STAGEDIR}${PREFIX}/share/man/man6/xaos.6
+		${STAGEDIR}${MANPREFIX}/share/man/man6/xaos.6
 
 post-install-EXAMPLES-on:
 	(cd ${WRKSRC}/examples && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR})
